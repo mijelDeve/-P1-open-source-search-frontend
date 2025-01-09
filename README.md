@@ -78,7 +78,7 @@ En mi intento de buscar proyectos open source para colaborar, surgió esta idea,
 2. React 18
 
 
-## ¿Cómo utilizarlo
+## ¿Cómo utilizarlo?
 
 Pronto un manual
 
