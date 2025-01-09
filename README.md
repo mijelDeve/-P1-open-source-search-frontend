@@ -1,12 +1,12 @@
 <a id="readme-top"></a>
 
-[![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/mijeldev/]
+[LinkedIn][https://www.linkedin.com/in/mijeldev/]
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/mijelDeve/-P1-open-source-search-frontend">
-    <img src="https://miro.medium.com/v2/resize:fit:1100/1*CWFkh5z8oa6dZfn5_gkKKQ.jpeg" alt="Logo" width="80" height="80">
+    <img src="https://miro.medium.com/v2/resize:fit:1100/1*CWFkh5z8oa6dZfn5_gkKKQ.jpeg" alt="Logo">
   </a>
 
   <h3 align="center">Búsqueda de colaboraciones en github</h3>
@@ -14,7 +14,7 @@
   <p align="center">
     Listado para encontrar proyectos en los que colaborar y mejorar tu perfil de github!
     <br />
-    <a href="https://github.com/mijelDeve/-P1-open-source-search-frontend"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/mijelDeve/-P1-open-source-search-frontend"><strong>Mira la documentación »</strong></a>
     <br />
 
   </p>
@@ -48,7 +48,7 @@
 <!-- ABOUT THE PROJECT -->
 ## Sobre el proyecto
 
-[![Página utilizada de referencia][product-screenshot]](./src/assets/images/image.png)
+[Página utilizada de referencia](./src/assets/images/image.png)
 
 En mi intento de buscar proyectos open source para colaborar, surgió esta idea, un lugar en donde puedas publicar si es que necesitas ayuda o si quieres implementar un nuevo feature.
 
@@ -56,11 +56,9 @@ En mi intento de buscar proyectos open source para colaborar, surgió esta idea,
 
 
 
-### Built With
+### Construido con
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [![React][React.js]][React-url]
+* [React][https://es.react.dev/]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -70,7 +68,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 ## Cómo comenzar
 
 1. Instalar las dependencias
-   ```sh
+  ```
   npm install 
   ```
 
