@@ -24,7 +24,7 @@
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Tablero de contenido</summary>
   <ol>
     <li>
       <a href="#about-the-project">Sobre el proyecto</a>
@@ -58,7 +58,7 @@ En mi intento de buscar proyectos open source para colaborar, surgió esta idea,
 
 ### Construido con
 
-* [React][https://es.react.dev/]
+* [React](https://es.react.dev/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
