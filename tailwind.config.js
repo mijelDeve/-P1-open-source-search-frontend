@@ -8,6 +8,9 @@ export default {
   theme: {
     extend: {
       colors: {
+        oshgrey: "#DADADA",
+        oshgreen: "#50A53A",
+        oshblack: "#2B2B2B",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
