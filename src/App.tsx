@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import CreateRequestProjectPage from './pages/CreateRequestProjectPage'
 import MyRequestProjectsPage from './pages/MyRequestProjectsPage'
+import UserPage from './pages/UserPage'
 
 function App() {
   return (
@@ -39,6 +40,15 @@ function App() {
           element={
             <MainLayout>
               <CreateRequestProjectPage />
+            </MainLayout>
+          }
+        />
+
+        <Route
+          path="/mis-datos"
+          element={
+            <MainLayout>
+              <UserPage />
             </MainLayout>
           }
         />
