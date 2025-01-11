@@ -5,6 +5,7 @@ import MainLayout from './layout/MainLayout'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import CreateRequestProjectPage from './pages/CreateRequestProjectPage'
+import MyRequestProjectsPage from './pages/MyRequestProjectsPage'
 
 function App() {
   return (
@@ -38,6 +39,15 @@ function App() {
           element={
             <MainLayout>
               <CreateRequestProjectPage />
+            </MainLayout>
+          }
+        />
+
+        <Route
+          path="/mis-peticiones"
+          element={
+            <MainLayout>
+              <MyRequestProjectsPage />
             </MainLayout>
           }
         />
