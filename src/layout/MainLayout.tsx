@@ -7,7 +7,7 @@ interface MainLayoutProps {
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     return (
-        <div className="bg-black w-full h-screen">
+        <div className="bg-oshblack w-full h-screen">
             <Navbar />
             { children}
         </div>
