@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
                             </Avatar>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className="w-48">
-                            <DropdownMenuItem onClick={() => alert('Mi cuenta')}>
+                            <DropdownMenuItem onClick={() => { window.location.href = "/mis-peticiones"}}>
                                 Mi cuenta
                             </DropdownMenuItem>
                             <DropdownMenuItem onClick={() => alert('Cerrar sesión')}>
