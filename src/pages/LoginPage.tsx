@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
-import { Badge } from "../components/ui/badge";
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -57,8 +56,9 @@ const LoginPage = () => {
         </form>
 
         {/* Enlace para recuperar la contraseña */}
-        <div className="mt-4 text-center">
+        <div className="mt-4 flex justify-between items-center">
           <a href="#" className="text-sm text-blue-600 hover:text-blue-800">¿Olvidaste tu contraseña?</a>
+          <a href="/registro" className="text-sm text-blue-600 hover:text-blue-800">Registrate</a>
         </div>
       </div>
     </div>
