@@ -1,12 +1,29 @@
 import React, { useState } from 'react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
+import { UserData } from '../interfaces/userInterfaces';
+import userService from '../services/userService';
 
 const RegisterPage: React.FC = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+
+  const fetchCreateUser = async () => {
+    const userData = {
+      username: fullName,
+      email: email,
+      password: password,
+    }
+    try {
+      const data = await userService.createUser(userData);
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,6 +32,7 @@ const RegisterPage: React.FC = () => {
     console.log('Correo electrónico:', email);
     console.log('Contraseña:', password);
     console.log('Confirmar contraseña:', confirmPassword);
+    fetchCreateUser();
   };
 
   return (
