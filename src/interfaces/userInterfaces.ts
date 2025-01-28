@@ -3,3 +3,8 @@ export interface UserData {
   email: string
   password: string
 }
+
+export interface UserDataLogin {
+  username: string
+  password: string
+}
