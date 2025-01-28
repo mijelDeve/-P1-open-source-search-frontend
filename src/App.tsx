@@ -7,6 +7,8 @@ import RegisterPage from './pages/RegisterPage'
 import CreateRequestProjectPage from './pages/CreateRequestProjectPage'
 import MyRequestProjectsPage from './pages/MyRequestProjectsPage'
 import UserPage from './pages/UserPage'
+import PrivateRoute from './router/PrivateRouter'
+import PublicRoute from './router/PublicRouter'
 
 function App() {
   return (
@@ -15,50 +17,62 @@ function App() {
         <Route
           path="/"
           element={
-            <MainLayout>
-              <HomePage />
-            </MainLayout>
+            <PrivateRoute>
+              <MainLayout>
+                <HomePage />
+              </MainLayout>
+            </PrivateRoute>
           }
         />
 
         <Route
           path="/ingreso"
           element={
-            <LoginPage />
+            <PublicRoute>
+              <LoginPage />
+            </PublicRoute>
           }
         />
 
         <Route
           path="/registro"
           element={
-            <RegisterPage />
+            <PublicRoute>
+              <RegisterPage />
+            </PublicRoute>
           }
         />
 
         <Route
           path="/crear-peticion"
           element={
-            <MainLayout>
-              <CreateRequestProjectPage />
-            </MainLayout>
+            <PrivateRoute>
+              <MainLayout>
+                <CreateRequestProjectPage />
+              </MainLayout>
+            </PrivateRoute>
           }
         />
 
         <Route
           path="/mis-datos"
           element={
-            <MainLayout>
-              <UserPage />
-            </MainLayout>
+            <PrivateRoute>
+              <MainLayout>
+                <UserPage />
+              </MainLayout>
+            </PrivateRoute>
           }
         />
 
         <Route
           path="/mis-peticiones"
           element={
-            <MainLayout>
-              <MyRequestProjectsPage />
-            </MainLayout>
+            <PrivateRoute>
+              <MainLayout>
+                <MyRequestProjectsPage />
+              </MainLayout>
+            </PrivateRoute>
           }
         />
 

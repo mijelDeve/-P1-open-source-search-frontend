@@ -1,8 +1,16 @@
+import { useNavigate } from "react-router-dom";
+import { TOKEN } from "../../utils/const";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
 const Navbar: React.FC = () => {
+    const navigate = useNavigate();
+    
+    const handleLogout = () => {
+        localStorage.removeItem(TOKEN)
+        navigate('/ingreso');
+    }
     return (
         <nav className="bg-oshgrey text-white p-4">
             <div className="container mx-auto flex justify-between items-center">
@@ -24,7 +32,7 @@ const Navbar: React.FC = () => {
                             <DropdownMenuItem onClick={() => { window.location.href = "/mis-datos"}}>
                                 Mi cuenta
                             </DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => alert('Cerrar sesión')}>
+                            <DropdownMenuItem onClick={handleLogout}>
                                 Cerrar sesión
                             </DropdownMenuItem>
                         </DropdownMenuContent>
