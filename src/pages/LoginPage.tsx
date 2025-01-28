@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
+import { Toaster } from "../components/ui/toaster";
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -15,8 +16,9 @@ const LoginPage = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-oshblack">
+      <Toaster />
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        
+
         <h2 className="text-2xl font-semibold text-center mb-6">Iniciar sesión</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
