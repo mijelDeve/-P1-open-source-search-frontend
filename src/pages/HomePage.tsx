@@ -7,11 +7,13 @@ import { data } from "../data/projects_data";
 import languageService from "../services/languageService";
 import levelService from "../services/levelServices";
 import { useToast } from "../hooks/use-toast";
+import { Language } from "../interfaces/languageInterfaces";
+import { Level } from "../interfaces/levelInterfaces";
 
 export default function HomePage() {
   const { toast } = useToast()
-  const [lenguages, setLenguages] = useState([])
-  const [levels, setLevels] = useState([])
+  const [lenguages, setLenguages] = useState<Language[]>([])
+  const [levels, setLevels] = useState<Level[]>([])
 
 
   const fetchLenguages = async () => { 

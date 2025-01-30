@@ -9,3 +9,7 @@ export interface UserData {
 }
 
 */
+export interface Language {
+  id: string; // o el tipo adecuado según la respuesta de tu API
+  name: string;
+}
