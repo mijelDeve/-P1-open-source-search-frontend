@@ -5,11 +5,14 @@ import { Label } from "../components/ui/label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../components/ui/select";
 import { data } from "../data/projects_data";
 import languageService from "../services/languageService";
+import levelService from "../services/levelServices";
 import { useToast } from "../hooks/use-toast";
 
 export default function HomePage() {
   const { toast } = useToast()
   const [lenguages, setLenguages] = useState([])
+  const [levels, setLevels] = useState([])
+
 
   const fetchLenguages = async () => { 
     try {
@@ -26,9 +29,26 @@ export default function HomePage() {
     }
   }
 
+  const fetchLevels = async () => { 
+    try {
+      const levels = await levelService.getAllLevels();
+      setLevels(levels.data)
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: 'Error',
+        description: 'Ocurrió un error al obtener los lenguajes',
+      })
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     fetchLenguages()
+    fetchLevels()
   }, [])
+
+  console.log(levels)
 
   return (
     <div className="container mx-auto p-6 lg:p-0">
@@ -58,7 +78,7 @@ export default function HomePage() {
                 <SelectLabel>Elige tu lenguaje de programación</SelectLabel>
                 {
                   lenguages.map(item => (
-                    <SelectItem value={item?.id}>{item?.name}</SelectItem>
+                    <SelectItem key={item?.id} value={item?.id}>{item?.name}</SelectItem>
                   ))
                 } 
               </SelectGroup>
@@ -70,12 +90,16 @@ export default function HomePage() {
           <Label className="text-white">Etiquetas</Label>
           <Select>
             <SelectTrigger className="w-full bg-white mt-4">
-              <SelectValue placeholder="Labels" />
+              <SelectValue placeholder="Seleccione un nivel" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Javascript</SelectLabel>
-                <SelectItem value="apple">React</SelectItem>
+                <SelectLabel>Elige tu nivel de programación</SelectLabel>
+                {
+                  levels.map(item => (
+                    <SelectItem key={item?.id} value={item?.id}>{item?.name}</SelectItem>
+                  ))
+                }
               </SelectGroup>
             </SelectContent>
           </Select>
