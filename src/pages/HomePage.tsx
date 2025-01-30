@@ -1,10 +1,35 @@
+import { useState, useEffect } from "react"
 import ProjectItem from "../components/Common/ProjectItem";
 import { Button } from "../components/ui/button";
 import { Label } from "../components/ui/label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../components/ui/select";
 import { data } from "../data/projects_data";
+import languageService from "../services/languageService";
+import { useToast } from "../hooks/use-toast";
 
 export default function HomePage() {
+  const { toast } = useToast()
+  const [lenguages, setLenguages] = useState([])
+
+  const fetchLenguages = async () => { 
+    try {
+      const lenguages = await languageService.getAllLanguages();
+      console.log(lenguages)
+      setLenguages(lenguages.data)
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: 'Error',
+        description: 'Ocurrió un error al obtener los lenguajes',
+      })
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchLenguages()
+  }, [])
+
   return (
     <div className="container mx-auto p-6 lg:p-0">
       <div className="flex justify-between items-center pt-10 pb-4">
@@ -30,8 +55,12 @@ export default function HomePage() {
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Javascript</SelectLabel>
-                <SelectItem value="apple">React</SelectItem>
+                <SelectLabel>Elige tu lenguaje de programación</SelectLabel>
+                {
+                  lenguages.map(item => (
+                    <SelectItem value={item?.id}>{item?.name}</SelectItem>
+                  ))
+                } 
               </SelectGroup>
             </SelectContent>
           </Select>
