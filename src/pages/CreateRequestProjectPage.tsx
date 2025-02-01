@@ -43,11 +43,6 @@ const CreateRequestProjectPage = () => {
   const form = useForm<z.infer<typeof formCreateRequestSchema>>({
     resolver: zodResolver(formCreateRequestSchema),
     defaultValues: {
-      // title: "",
-      // description: "",
-      // link: "",
-      // languageId: "",
-      // levelId: "",
     },
   })
 
@@ -109,13 +104,15 @@ const CreateRequestProjectPage = () => {
 
   const onSubmit = (values: z.infer<typeof formCreateRequestSchema>) => {
     console.log(values)
-    fetchCreateRequest(values);
+    // fetchCreateRequest(values);
   };
 
   useEffect(() => {
     fetchLenguages()
     fetchLevels()
   }, [])
+
+  console.log(lenguages)
 
   return (
     <div className="container mx-auto p-6 lg:p-0">
@@ -176,29 +173,33 @@ const CreateRequestProjectPage = () => {
           </div>
 
           {/* Lenguaje */}
-          <div className="my-4">
+          <div className="my-4 text-black">
             <FormField
               control={form.control}
               name="languageId"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-white">Lenguaje de programación</FormLabel>
-                  <FormControl className="text-black">
-                    <Select value={field.value} onValueChange={(value) => field.onChange(value)}>
-                      <SelectTrigger className="w-full bg-white mt-2 text-black">
-                        <SelectValue className="text-black" placeholder="Selecciona un lenguaje" />
+                  <Select onValueChange={field.onChange} value={field.value || ''}>
+                    <FormControl className="bg-white text-black">
+                      <SelectTrigger className="flex justify-start">
+                        <SelectValue placeholder="Selecciona un lenguaje" />
+                        <div className="mt-2 text-black ">
+                          {
+                            lenguages.find((lang) => lang.id == field.value)?.name
+                          }
+                        </div>
                       </SelectTrigger>
-                      <SelectContent className="text-black">
-                        <SelectGroup>
-                          {lenguages.map((item) => (
-                            <SelectItem className="text-black" key={item.id} value={item.id}>
-                              {item.name}
-                            </SelectItem>
-                          ))}
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                  </FormControl>
+                    </FormControl>
+                    <SelectContent className="bg-white">
+                      {lenguages.map((item) => (
+                        <SelectItem className="text-black" key={item.id} value={item.id}>
+                          {item.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {/* Mostrar el valor de field.value temporalmente para depuración */}
                   <FormMessage />
                 </FormItem>
               )}
@@ -211,12 +212,17 @@ const CreateRequestProjectPage = () => {
               control={form.control}
               name="levelId"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="">
                   <FormLabel className="text-white">Nivel de programación</FormLabel>
-                  <FormControl>
+                  <FormControl className="bg-white text-black">
                     <Select onValueChange={(value) => field.onChange(value)} value={field.value}>
-                      <SelectTrigger className="w-full bg-white mt-2 text-black">
-                        <SelectValue placeholder="Selecciona un nivel"  className="text-black" />
+                      <SelectTrigger className="flex justify-start bg-white">
+                        <SelectValue placeholder="Selecciona un nivel" className="text-black" />
+                        <div className="mt-2 text-black ">
+                          {
+                            levels.find((lang) => lang.id == field.value)?.name
+                          }
+                        </div>
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
