@@ -1,4 +1,4 @@
-import { RequestData } from "../interfaces/requestInterfaces";
+import { RequestData, RequestGetData } from "../interfaces/requestInterfaces";
 import axiosInstance from "../utils/axiosInstance";
 
 const requestRepository = {
@@ -10,7 +10,18 @@ const requestRepository = {
       console.error('Error al crear la petición', error);
       throw error;
     }
-  }, 
+  },
+  getAllRequests: async (requestGetData: RequestGetData) => {
+    try {
+      const response = await axiosInstance.get('/requests/get-all-request', {
+        params: requestGetData
+      });
+      return response;
+    } catch (error) {
+      console.error('Error al obtener las peticiones', error);
+      throw error;
+    }
+  },
 };
 
 export default requestRepository

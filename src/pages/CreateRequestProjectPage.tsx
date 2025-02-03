@@ -53,7 +53,6 @@ const CreateRequestProjectPage = () => {
       link: values.link,
       languageId: values.languageId,
       levelId: values.levelId,
-      userId: String(9),
     }
 
     try {
@@ -103,7 +102,6 @@ const CreateRequestProjectPage = () => {
   }
 
   const onSubmit = (values: z.infer<typeof formCreateRequestSchema>) => {
-    console.log(values)
     fetchCreateRequest(values);
   };
 

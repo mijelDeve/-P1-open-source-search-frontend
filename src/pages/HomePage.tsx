@@ -3,17 +3,22 @@ import ProjectItem from "../components/Common/ProjectItem";
 import { Button } from "../components/ui/button";
 import { Label } from "../components/ui/label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../components/ui/select";
-import { data } from "../data/projects_data";
 import languageService from "../services/languageService";
 import levelService from "../services/levelServices";
 import { useToast } from "../hooks/use-toast";
 import { Language } from "../interfaces/languageInterfaces";
 import { Level } from "../interfaces/levelInterfaces";
+import requestService from "../services/requestService";
+import { RequestData } from "../interfaces/requestInterfaces";
 
 export default function HomePage() {
   const { toast } = useToast()
   const [lenguages, setLenguages] = useState<Language[]>([])
   const [levels, setLevels] = useState<Level[]>([])
+  const [requests, setRequests] = useState<RequestData[]>([])
+  const [page] = useState<number>(1)
+  const [limite] = useState<number>(10)
+  console.log(requests)
 
 
   const fetchLenguages = async () => { 
@@ -45,9 +50,29 @@ export default function HomePage() {
     }
   }
 
+  const fetchAllRequest = async () => { 
+    try {
+      const requests = await requestService.getAllRequests({
+        page: String(page),
+        limit: String(limite)
+      });
+
+      console.log(requests)
+      setRequests(requests?.data?.data)
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: 'Error',
+        description: 'Ocurrió un error al obtener los lenguajes',
+      })
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     fetchLenguages()
     fetchLevels()
+    fetchAllRequest()
   }, [])
 
   console.log(levels)
@@ -122,9 +147,9 @@ export default function HomePage() {
       </div>
 
       {
-        data.map((item, index) => (
+        requests.map((item, index) => (
           <div key={index}>
-            <ProjectItem avatarImage={item.avatarImage} title={item.title} tecnology={item.tecnology} author={item.author} date={item.date} description={item.description} label={item.label}  />
+            <ProjectItem link={item.link} title={item.title} tecnology={item?.language?.name || ""} author={item.user?.username || ""} date={item.created_at || ""} description={item.description} label={item?.level?.name || ""}  />
           </div>
         ))
       }
