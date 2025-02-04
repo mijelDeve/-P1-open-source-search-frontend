@@ -9,7 +9,7 @@ const MyRequestProjectsPage = () => {
             {
                 data.map((item, index) => (
                     <div key={index}>
-                        <ProjectItem avatarImage={item.avatarImage} title={item.title} tecnology={item.tecnology} author={item.author} date={item.date} description={item.description} label={item.label} />
+                        <ProjectItem link="" title={item.title} tecnology={item.tecnology} author={item.author} date={item.date} description={item.description} label={item.label} />
                     </div>
                 ))
             }
