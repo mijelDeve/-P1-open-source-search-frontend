@@ -22,6 +22,15 @@ const requestRepository = {
       throw error;
     }
   },
+  getAllRequestsByUser: async () => {
+    try {
+      const response = await axiosInstance.get('/requests/get-by-user');
+      return response;
+    } catch (error) {
+      console.error('Error al obtener las peticiones creadas por el usuario', error);
+      throw error;
+    }
+  }
 };
 
 export default requestRepository
