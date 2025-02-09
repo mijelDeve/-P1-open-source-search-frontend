@@ -19,6 +19,15 @@ const requestService = {
       console.error('Error al crear la petición en el servicio', error);
       throw error;
     }
+  },
+  getAllRequestsByUser: async() => {
+    try {
+      const requestGetDataByuserResponse = await requestRepository.getAllRequestsByUser();
+      return requestGetDataByuserResponse.data;
+    } catch (error) {
+      console.error('Error al obtener las peticiones por usuario en el servicio', error);
+      throw error;
+    }
   }
 };
 

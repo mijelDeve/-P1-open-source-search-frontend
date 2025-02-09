@@ -36,7 +36,6 @@ export default function HomePage() {
   console.log(page)
   const [limite] = useState<number>(10)
 
-
   const form = useForm<z.infer<typeof formFiltersSchema>>({
     resolver: zodResolver(formFiltersSchema),
     defaultValues: {
@@ -69,7 +68,7 @@ export default function HomePage() {
       toast({
         variant: "destructive",
         title: 'Error',
-        description: 'Ocurrió un error al obtener los lenguajes',
+        description: 'Ocurrió un error al obtener los niveles',
       })
       console.log(error)
     }
@@ -105,7 +104,7 @@ export default function HomePage() {
       toast({
         variant: "destructive",
         title: 'Error',
-        description: 'Ocurrió un error al obtener los lenguajes',
+        description: 'Ocurrió un error al obtener las peticiones',
       })
       console.log(error)
     }
@@ -114,7 +113,7 @@ export default function HomePage() {
   const onSubmit = (values: z.infer<typeof formFiltersSchema>) => {
     console.log(values)
     setPage(1);
-    fetchAllRequest(values, 1); // Obtener resultados para la primera página
+    fetchAllRequest(values, 1);
   };
 
 
@@ -122,7 +121,7 @@ export default function HomePage() {
     const currentValues = form.getValues();
     setPage((prevPage) => {
       const newPage = prevPage + 1;
-      fetchAllRequest(currentValues, newPage); // Obtener más resultados
+      fetchAllRequest(currentValues, newPage);
       return newPage;
     });
   };
@@ -130,7 +129,7 @@ export default function HomePage() {
   useEffect(() => {
     fetchLenguages()
     fetchLevels()
-    fetchAllRequest({}, 1); // Obtener resultados al cargar la página inicial
+    fetchAllRequest({}, 1);
   }, [])
 
   console.log(levels)
