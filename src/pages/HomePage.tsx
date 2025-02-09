@@ -32,7 +32,8 @@ export default function HomePage() {
   const [lenguages, setLenguages] = useState<Language[]>([])
   const [levels, setLevels] = useState<Level[]>([])
   const [requests, setRequests] = useState<RequestData[]>([])
-  const [page] = useState<number>(1)
+  const [page, setPage] = useState<number>(1)
+  console.log(page)
   const [limite] = useState<number>(10)
 
 
@@ -74,21 +75,32 @@ export default function HomePage() {
     }
   }
 
-  const fetchAllRequest = async (values: z.infer<typeof formFiltersSchema>) => {
-    console.log(values)
-
+  const fetchAllRequest = async (values: z.infer<typeof formFiltersSchema>, page: number) => {
     const params = {
-      page: String(page),
+      page: String(page) ,
       limit: String(limite),
       languageId: values.languageId || "",
       levelId: values.levelId || ""
     }
     // console.log(currentLengauge)
     try {
-      const requests = await requestService.getAllRequests(params);
+      const requestsData = await requestService.getAllRequests(params);
 
       console.log(requests)
-      setRequests(requests?.data?.data)
+
+      if (page > 1) {
+        setRequests([
+          ...requests,
+          ...requestsData?.data?.data
+        ])
+
+        console.log([
+          ...requests,
+          requestsData?.data?.data
+        ])
+        return 
+      }
+      setRequests(requestsData?.data?.data)
     } catch (error) {
       toast({
         variant: "destructive",
@@ -101,13 +113,24 @@ export default function HomePage() {
 
   const onSubmit = (values: z.infer<typeof formFiltersSchema>) => {
     console.log(values)
-    fetchAllRequest(values);
+    setPage(1);
+    fetchAllRequest(values, 1); // Obtener resultados para la primera página
+  };
+
+
+  const loadMoreRequests = () => {
+    const currentValues = form.getValues();
+    setPage((prevPage) => {
+      const newPage = prevPage + 1;
+      fetchAllRequest(currentValues, newPage); // Obtener más resultados
+      return newPage;
+    });
   };
 
   useEffect(() => {
     fetchLenguages()
     fetchLevels()
-    fetchAllRequest({})
+    fetchAllRequest({}, 1); // Obtener resultados al cargar la página inicial
   }, [])
 
   console.log(levels)
@@ -234,6 +257,12 @@ export default function HomePage() {
           </div>
         )
       }
+
+      <Button onClick={() => {
+        loadMoreRequests()
+      }}>
+        Cargar más
+      </Button>
 
     </div>
 
