@@ -17,11 +17,9 @@ function App() {
         <Route
           path="/"
           element={
-            <PrivateRoute>
-              <MainLayout>
-                <HomePage />
-              </MainLayout>
-            </PrivateRoute>
+            <MainLayout>
+              <HomePage />
+            </MainLayout>
           }
         />
 

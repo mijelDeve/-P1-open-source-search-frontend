@@ -5,8 +5,10 @@ import { Badge } from "../ui/badge";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
 const Navbar: React.FC = () => {
+    const token = localStorage.getItem(TOKEN);
+    console.log(token)
     const navigate = useNavigate();
-    
+
     const handleLogout = () => {
         localStorage.removeItem(TOKEN)
         navigate('/ingreso');
@@ -29,12 +31,24 @@ const Navbar: React.FC = () => {
                             </Avatar>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className="w-48">
-                            <DropdownMenuItem onClick={() => { window.location.href = "/mis-datos"}}>
-                                Mi cuenta
-                            </DropdownMenuItem>
-                            <DropdownMenuItem onClick={handleLogout}>
-                                Cerrar sesión
-                            </DropdownMenuItem>
+
+                            {
+                                token ?
+                                    <>
+
+                                        <DropdownMenuItem onClick={() => { window.location.href = "/mis-datos" }}>
+                                            Mi cuenta
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem onClick={handleLogout}>
+                                            Cerrar sesión
+                                        </DropdownMenuItem>
+                                    </>
+                                    :
+                                    <DropdownMenuItem onClick={() => { navigate('/ingreso')}}>
+                                        Ingresa
+                                    </DropdownMenuItem>
+                            }
+
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
