@@ -1,4 +1,4 @@
-import { UserData, UserDataLogin } from "../interfaces/userInterfaces";
+import { UserData, UserDataLogin, UserDataUpdate } from "../interfaces/userInterfaces";
 import userRepository from "../repositories/userRepository";
 import { TOKEN } from "../utils/const";
 
@@ -22,7 +22,16 @@ const userService = {
       console.error('Error al loguear el usuario en el servicio', error);
       throw error;
     }
-  }
+  },
+  updateUser: async (userData: UserDataUpdate) => {
+    try {
+      const userUpdate = await userRepository.updateUser(userData);
+      return userUpdate.data;
+    } catch (error) {
+      console.error('Error al actualizar los datos del usuario en el servicio', error);
+      throw error;
+    }
+  } 
 };
 
 export default userService;

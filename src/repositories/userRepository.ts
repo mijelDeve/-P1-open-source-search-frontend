@@ -1,4 +1,4 @@
-import { UserData, UserDataLogin } from "../interfaces/userInterfaces";
+import { UserData, UserDataLogin, UserDataUpdate } from "../interfaces/userInterfaces";
 import axiosInstance from "../utils/axiosInstance";
 
 const userRepository = {
@@ -20,6 +20,15 @@ const userRepository = {
       throw error;
     }
   },
+  updateUser: async (userDataUpdate: UserDataUpdate) => {
+    try {
+      const response = await axiosInstance.put('/user/update-user-data', userDataUpdate);
+      return response;
+    } catch (error) {
+      console.error('Error al actualizar datos del usuario', error);
+      throw error;
+    }
+  }
 };
 
 export default userRepository;
